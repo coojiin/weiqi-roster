@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="台灣圍棋名錄查詢（密碼保護）" />
+  <title>台灣圍棋名錄查詢</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Login -->
+    <section id="login-view" class="view" aria-labelledby="login-title">
+      <div class="card login-card">
+        <h1 id="login-title">台灣圍棋名錄查詢</h1>
+        <p class="subtitle">請輸入存取密碼以解鎖資料</p>
+        <form id="login-form" autocomplete="off">
+          <label class="field">
+            <span>密碼</span>
+            <input
+              type="password"
+              id="password-input"
+              name="password"
+              required
+              autofocus
+              placeholder="請輸入密碼"
+              autocomplete="current-password"
+            />
+          </label>
+          <p id="login-error" class="error" hidden role="alert"></p>
+          <button type="submit" id="login-btn" class="btn primary">解鎖查詢</button>
+        </form>
+        <p class="hint">密碼請向網站管理員索取。</p>
+      </div>
+    </section>
+
+    <!-- Search -->
+    <section id="search-view" class="view" hidden aria-labelledby="search-title">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <h1 id="search-title">台灣圍棋名錄查詢</h1>
+          <button type="button" id="lock-btn" class="btn ghost" title="鎖定並清除記憶體中的資料">鎖定</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <div class="card filters">
+          <label class="field">
+            <span>姓名</span>
+            <input
+              type="search"
+              id="name-input"
+              placeholder="輸入部分姓名（支援英文不區分大小寫）"
+              enterkeyhint="search"
+            />
+          </label>
+
+          <fieldset class="chip-group">
+            <legend>段位／組別</legend>
+            <div class="chips" id="rank-chips" role="group" aria-label="段位篩選">
+              <!-- filled by JS -->
+            </div>
+            <button type="button" id="clear-ranks" class="btn link">清除段位</button>
+          </fieldset>
+
+          <div class="year-row">
+            <label class="field">
+              <span>出生年（起）</span>
+              <input type="number" id="year-min" min="1900" max="2100" placeholder="例如 1980" inputmode="numeric" />
+            </label>
+            <label class="field">
+              <span>出生年（迄）</span>
+              <input type="number" id="year-max" min="1900" max="2100" placeholder="例如 2010" inputmode="numeric" />
+            </label>
+          </div>
+
+          <p class="note">※ 出生年為 <strong>1900</strong> 時，通常表示資料庫中未提供正確出生年（未知）。</p>
+        </div>
+
+        <div class="results-meta">
+          <p id="match-count" aria-live="polite">請開始搜尋</p>
+        </div>
+
+        <div class="table-wrap card">
+          <table id="results-table" aria-describedby="match-count">
+            <thead>
+              <tr>
+                <th scope="col">姓名</th>
+                <th scope="col">出生年</th>
+                <th scope="col">段位</th>
+              </tr>
+            </thead>
+            <tbody id="results-body">
+              <tr class="empty-row"><td colspan="3">尚無結果</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <nav id="pagination" class="pagination" aria-label="分頁" hidden></nav>
+      </main>
+
+      <footer class="footer">
+        <p>資料來源為中華民國圍棋協會公開名錄；本站非官方。</p>
+      </footer>
+    </section>
+  </div>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>

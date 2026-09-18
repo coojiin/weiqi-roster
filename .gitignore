@@ -1,0 +1,12 @@
+# Never publish plaintext roster or local secrets
+*.env
+.env*
+secrets/
+plaintext/
+roster_all.json
+roster_all.csv
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
