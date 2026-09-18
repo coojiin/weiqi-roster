@@ -97,6 +97,7 @@ function showError(msg) {
 function unlockUI() {
   loginView.hidden = true;
   searchView.hidden = false;
+  document.body.classList.add("unlocked");
   passwordInput.value = "";
   showError("");
   nameInput.focus();
@@ -118,6 +119,7 @@ function lockUI() {
   pagination.innerHTML = "";
   searchView.hidden = true;
   loginView.hidden = false;
+  document.body.classList.remove("unlocked");
   passwordInput.focus();
 }
 

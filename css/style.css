@@ -56,6 +56,13 @@ h1 {
   min-height: 100vh;
 }
 
+/* [hidden] must override #login-view { display: flex } etc. */
+.view[hidden],
+#login-view[hidden],
+#search-view[hidden] {
+  display: none !important;
+}
+
 #login-view {
   display: flex;
   align-items: center;
@@ -395,4 +402,14 @@ tbody tr:hover td {
   .year-row {
     grid-template-columns: 1fr;
   }
+}
+
+body.unlocked #login-view {
+  display: none !important;
+}
+body:not(.unlocked) #search-view {
+  display: none !important;
+}
+body.unlocked #search-view {
+  display: block;
 }
